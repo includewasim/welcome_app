@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome App</title>
+    <style>
+        *{
+            font-size: 50px;
+        }
+        body {
+            background-color: #ffe4e1;
+        }
+        .btn {
+            border-radius: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Welcome App</h1>
+        <form onsubmit="check()">
+            <input type="text" id="name" placeholder="Enter Your Name">
+            <br><br>
+            <input type="submit" value="Submit" class="btn">
+        </form>
+        <h2 id="msg"></h2>
+    </center>
+
+    <script>
+        function check()
+        {
+            event.preventDefault();
+            let name=document.getElementById("name");
+            let msg=document.getElementById("msg");
+
+            if(name.value=="")
+            {
+                alert("Input Field Cannot Be Blank ");
+                msg.innerHTML="";
+                name.focus();
+                return;
+            }
+            if(name.value.trim()=="")
+            {
+                alert("Input Field Cannot Be Blank spaces ");
+                msg.innerHTML="";
+                name.value="";
+                name.focus();
+                return;
+            }
+
+            if(!name.value.match(/^[A-Za-z ]+$/))
+            {
+                alert("Name Should Contain Only Alphabets");
+                msg.innerHTML="";
+                name.value="";
+                name.focus();
+                return;
+            }
+
+            let d= new Date();
+            let hr=d.getHours();
+            let ans="";
+            if(hr<12)   ans="Good Morning "+name.value;
+            else if(hr<16)  ans="Good Afternoon "+name.value;
+            else    ans="Good Evening "+name.value;
+            msg.innerHTML=ans; 
+            
+        }
+    </script>
+</body>
+</html>
